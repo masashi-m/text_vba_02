@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vb_2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="0-%E5%89%8D%E5%9B%9E%E3%81%AE%E3%81%8A%E3%81%95%E3%82%89%E3%81%84--%E6%BA%96%E5%82%99">0. 前回のおさらい + 準備</h1>
+<p>前回までの学習内容を復習して行きましょう。</p>
+<h2 id="%E2%97%86vba">◆VBA</h2>
+<p>・Visual Basic for Application の略称<br>
+・VB は Microsoft が開発した Windows で動くプログラミング言語</p>
+<br>
+<h2 id="%E2%97%86vbe">◆VBE</h2>
+<p>・Visual Basic Editor の略称で、Excel で VBA を使うためのエディタ<br>
+・ショートカットキーは Alt + F11</p>
+<br>
+<h3 id="%E2%97%8Fvba-%E3%81%AE%E5%9F%BA%E6%9C%AC%E7%94%A8%E8%AA%9E">●VBA の基本用語</h3>
+<blockquote>
+<p>・マクロ：VBA で記述されたプログラム<br>
+・プロシージャ：マクロの最小単位(VBA のコード)<br>
+・コメント：マクロに影響を与えないメモ<br>
+・モジュール：マクロを作成するシート(場所)<br>
+・プロジェクト：モジュールの集合</p>
+</blockquote>
+<br>
+<h3 id="%E2%97%8F-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%A8%E3%83%97%E3%83%AD%E3%82%B7%E3%83%BC%E3%82%B8%E3%83%A3">● モジュールとプロシージャ</h3>
+<p>左側のメニュー内のプロジェクトにカーソルを合わせたら、<br>
+右クリック → 挿入 → 標準モジュール の順番にクリックし、<br>
+新規のモジュールを作成する。</p>
+<p>・プロシージャの基本構成</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> プロシージャ名()
+    実行処理
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<blockquote>
+<p>「sub プロシージャ名 + ↓ 」で自動変換<br>
+「ctrl + space」で入力候補のリスト → Tab キー <br></p>
+</blockquote>
+<br>
+<h3 id="%E2%97%8F-%E9%96%A2%E6%95%B0">● 関数</h3>
+<p>目的の処理を実施するため Excel に元々用意されている数式</p>
+<br>
+<h3 id="%E2%97%8F-%E5%A4%89%E6%95%B0">● 変数</h3>
+<p>データを格納する「箱」の役割を持つ文字列。<br>
+格納する際はデータの種類である「型」を宣言する。<br>
+型を宣言して、変数に格納する値を制御出来る。</p>
+<p>データ型の宣言方法。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Dim</span> 変数名 <span class="hljs-keyword">As</span> データ型
+</div></code></pre>
+<p>◆ データ型一覧</p>
+<blockquote>
+<p>・Integer：整数型<br>
+・Long：長数型<br>
+・String：文字列型<br>
+・Object：オブジェクト型<br>
+・Boolean：論理型(True/False)<br>
+・Date：日付型</p>
+</blockquote>
+<br>
+<br>
+<h2 id="%E2%97%86-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">◆ オブジェクト</h2>
+<p>元々は「モノ・コト(対象)」の意味を持つ単語。</p>
+<h3 id="%E2%97%8Fvba-%E3%81%AE%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">●VBA のオブジェクト</h3>
+<p>VBA では、処理の対象となるもの全てをオブジェクトと定義。<br>
+ワークシートやセルなど、通常の Excel 操作で利用するものを<br>
+オブジェクトと見なし、それぞれにオブジェクト名が設定されている。</p>
+<br>
+<h4 id="%E3%83%BBapplication-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Application オブジェクト</h4>
+<blockquote>
+<p>Excel を対象</p>
+</blockquote>
+<h4 id="%E3%83%BBworkbook-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Workbook オブジェクト</h4>
+<blockquote>
+<p>Excel ブックを対象</p>
+</blockquote>
+<h4 id="%E3%83%BBworksheet-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Worksheet オブジェクト</h4>
+<blockquote>
+<p>「ワークシート」を対象</p>
+</blockquote>
+<h4 id="%E3%83%BBrange-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Range オブジェクト</h4>
+<blockquote>
+<p>セルを対象</p>
+</blockquote>
+<h4 id="%E3%83%BBfont-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">・Font オブジェクト</h4>
+<blockquote>
+<p>セル内文字列の書式設定を対象</p>
+</blockquote>
+<br>
+<h3 id="%E2%97%8F-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E8%A8%98%E8%BF%B0%E6%96%B9%E6%B3%95">● オブジェクトの記述方法</h3>
+<blockquote>
+<p>(1)親オブジェクトから順番に .(ドット)で繋げる<br>
+(2)アクティブなオブジェクトを指定する場合、親オブジェクトの記述は不要<br>
+(3)アクティブではないオブジェクトを指定する場合は、コレクションから<br>
+該当のオブジェクトを指定する。</p>
+</blockquote>
+<p><br><br></p>
+<br>
+<h2 id="%E2%97%86-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">◆ プロパティ</h2>
+<p>オブジェクトが持つデータの事。<br>
+対応するプロパティを指定して、値の取得や設定を行う。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AE%E8%A8%98%E8%BF%B0%E6%96%B9%E6%B3%95">● プロパティの記述方法</h3>
+<p>・「オブジェクト.プロパティ」が基本の記述方法。<br>
+・「親オブジェクト.子オブジェクト.プロパティ」の様に<br>
+必要な分だけ 「オブジェクト」と「.」を繋げます。</p>
+<p>・アクティブなワークシートやセルに対して処理を行う場合、<br>
+親オブジェクトは記述が不要。</p>
+<br>
+<h2 id="%E2%97%86-cells-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">◆ Cells プロパティ</h2>
+<p>セルを指定するためのプロパティ。<br>
+「Cells(行番号, 列番号)」と記述する</p>
+<br>
+<h2 id="%E2%97%86-value-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">◆ Value プロパティ</h2>
+<p>セルの値を表すプロパティ。<br>
+Range オブジェクトや Cells プロパティとセットで用いられる。</p>
+<br>
+<h2 id="%E2%97%86-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">◆ メソッド</h2>
+<p>オブジェクトに対して指定する操作の事をメソッドと呼ぶ。<br>
+記述方法はプロパティと同様で「オブジェクト.メソッド」が基本。</p>
+<h3 id="%E2%97%8F-%E5%BC%95%E6%95%B0">● 引数</h3>
+<p>引数は「メソッドをより詳しく指定する値」
+メソッドによっては引数を指定できる。</p>
+<br>
+<h3 id="%E2%97%8Fcopy-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Copy メソッド</h3>
+<blockquote>
+<p>指定したセル範囲のデータをコピーする。</p>
+</blockquote>
+<h3 id="%E2%97%8Fclear-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Clear メソッド</h3>
+<blockquote>
+<p>指定したセル範囲のデータを完全にクリア。</p>
+</blockquote>
+<h3 id="%E2%97%8Fadd-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Add メソッド</h3>
+<blockquote>
+<p>指定した場所に新しいワークシートを追加。</p>
+</blockquote>
+<h3 id="%E2%97%8Fselect-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Select メソッド</h3>
+<blockquote>
+<p>アクティブなセルがあるワークシートを取得。</p>
+</blockquote>
+<br>
+<h2 id="%E2%97%86-%E3%81%BE%E3%81%A8%E3%82%81">◆ まとめ</h2>
+<blockquote>
+<p>オブジェクト：Excel を構成するパーツ(ワークシート、セルなど)<br>
+プロパティ：オブジェクトの性質・データ<br>
+メソッド： オブジェクトへの処理及び動作</p>
+</blockquote>
+<br>
+<p>◆VBA の基本文法は以下の 3 つに代表されます。</p>
+<blockquote>
+<p>(1) オブジェクト.メソッド + 引数名:=引数<br>
+(2) オブジェクト.プロパティ = プロパティの値<br>
+(3) 変数 = オブジェクト.プロパティ / メソッド</p>
+</blockquote>
+<br>
+<h2 id="%E2%97%86for-next">◆For Next</h2>
+<p>同じ処理を指定した回数繰り返す構文。<br>
+ループ回数をカウントするカウント変数を設定する。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 繰り返し()
+    <span class="hljs-keyword">Dim</span> 変数 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Long</span>
+
+    <span class="hljs-keyword">For</span> 変数 = 開始 <span class="hljs-keyword">To</span> 終了
+        処理
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<h2 id="%E2%97%86do-loop-until">◆Do Loop Until</h2>
+<p>設定された終了条件が True になるまで処理を繰り返す構文。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> DoLoop()
+    <span class="hljs-keyword">Do</span>
+        実行処理
+    <span class="hljs-keyword">Loop</span> <span class="hljs-keyword">Until</span> 終了条件
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>繰り返し回数の指定がなく、終了条件が設定される。</p>
+<br>
+<br>
+<h3 id="%E2%97%8Fif-then-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">●If Then ステートメント</h3>
+<p>条件式を指定し「もし〇〇であればこの処理を実行する」といった<br>
+場合分けを実装する。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 条件分岐<span class="hljs-number">1</span>()
+    <span class="hljs-keyword">If</span> 条件式 <span class="hljs-keyword">Then</span>
+        処理
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<p>さらに複数の処理を記述する場合は、ElseIf を使用する。</p>
+<p>[基本構文]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> 条件分岐<span class="hljs-number">3</span>()
+    <span class="hljs-keyword">If</span> 条件式<span class="hljs-number">1</span> <span class="hljs-keyword">Then</span>
+        処理A
+    <span class="hljs-keyword">ElseIf</span> 条件式<span class="hljs-number">2</span> <span class="hljs-keyword">Then</span>
+        処理B
+    <span class="hljs-keyword">ElseIf</span> 条件式<span class="hljs-number">3</span> <span class="hljs-keyword">Then</span>
+        処理C
+    <span class="hljs-keyword">Else</span>
+        処理D
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">if</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<h2 id="%E2%97%86with-%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88">◆With ステートメント</h2>
+<p>同じオブジェクトに対し、連続的に処理を行う際、簡略的に<br>
+記述するためのキーワードです。同一のオブジェクトを With で<br>
+囲み、オブジェクトの記述を省略できます。</p>
+<p>[with ステートメント 1]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> with_sample1
+    <span class="hljs-keyword">with</span> オブジェクト()
+        .プロパティa
+        .プロパティb
+        .プロパティc
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h2 id="%E2%97%86-%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E8%A8%AD%E5%AE%9A">◆ フォームコントロールの設定</h2>
+<p>次の章へ移る前に、1 つだけ新しい操作を学習します。<br>
+これまで、マクロは全て VBE 画面の実行ボタンか<br>
+プロシージャ内で F5 キーを押して実行していました。</p>
+<p>実際の業務では上記の操作は手間なので、通常は<br>
+フォームを作成し、そこにマクロを登録します。<br>
+以下の演習を実施して「削除ボタン」を作成しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次の手順とコードを記述し、削除ボタンを作成しましょう。<br>
+(1)以下のコードをVBEの標準モジュール内に記述<br>
+(2)Excelウインドウの開発タブ > 挿入 > フォームコントロール内のボタンアイコン を選択<br>
+(3)ワークシート上でボタンを設置する位置を指定<br>
+(4)マクロ登録画面で「all_clear」を指定<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> all_clear()
+    Cells.Clear
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<hr>
+<p><br><br><br></p>
+<h1 id="1-%E3%82%BB%E3%83%AB%E7%AF%84%E5%9B%B2%E3%81%AE%E9%81%B8%E6%8A%9E1">1. セル範囲の選択(1)</h1>
+<p>この章ではセル範囲を選択する方法について学習します。<br>
+VBA ではセル操作の機会が最も多いため、セル選択の記述は<br>
+必然的に頻度が高くなります。しっかり理解して行きましょう。</p>
+<br>
+<h3 id="%E2%97%8Fselect-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●Select メソッド</h3>
+<p>セル範囲を指定して選択するには、Select メソッドを利用します。<br>
+対象は Range オブジェクトで、記述は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> selectCells()
+    Range(<span class="hljs-string">"セル範囲"</span>).<span class="hljs-keyword">Select</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>上記のセル範囲には、連続したセルも離れたセルも指定可能です。<br>
+また、選択したセル範囲を続けて対象とする場合は、Selection<br>
+オブジェクトを使用します。次の演習で感覚を掴みましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+実行は再生マークをクリックするか、F5キーをタイプします。<br>
+(カーソルが位置するプロシージャで、実行されます)<br>
+<blockquote>
+<p>「sub selectCells + ↓ 」で自動変換<br>
+「ra + ctrl + space」で入力候補の Range を選択して Tab キー <br></p>
+</blockquote>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> selectCells()
+    Range(<span class="hljs-string">"A1:C3"</span>).<span class="hljs-keyword">Select</span>
+    Selection.Interior.Color = vbRed
+    Range(<span class="hljs-string">"A5,A7,C5,C7"</span>).<span class="hljs-keyword">Select</span>
+    Selection.Interior.Color = vbYellow
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Interiorプロパティ：塗りつぶし要素の取得<br>
+・Colorプロパティ = 「色」でカラー値を指定<br>
+・vbRed：Excelのキーワード(予約語)。カラーネームは vbを頭に付ける。<br>
+</div>
+<br>
+<p>Select メソッドの利用で 1 点注意事項があります。Select メソッドは<br>
+アクティブな親オブジェクト(ワークシート)しか指定出来ません。<br>
+そのため、事前に Activate メソッドを使いワークシートを選択します。</p>
+<br>
+<h3 id="%E2%97%8Foffset-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">●Offset プロパティ</h3>
+<p>第 1 回テキストでも解説しましたが、改めて学習しましょう。<br>
+行方向と列方向に移動するプロパティです。基本構造は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> cellsMove()
+    Offset(行方向への移動セル数, 列方向への移動セル数)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>第 1 引数にプラスの値を入れると下方向、マイナスの値を入れると上方向へ<br>
+移動します。同様に、第 2 引数にプラスの値を入れると右方向、マイナスの<br>
+値を入れると左方向へ移動します。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%82%BB%E3%83%AB%E3%81%8B%E3%82%89%E3%81%AE%E7%A7%BB%E5%8B%95">● アクティブセルからの移動</h3>
+<p>1 つ前の項ではセルを選択する方法を学習しました。この記述と Offset<br>
+プロパティを組み合わせて、指定したセル範囲の値を移動させましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、マクロを実行しましょう。<br>
+※実行前に、以下のマクロでワークシートを初期化する事</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> all_clear()
+    Cells.Clear
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> selectCells()
+    Range(<span class="hljs-string">"A1:C3"</span>).<span class="hljs-keyword">Select</span>
+    Selection.Interior.Color = vbCyan
+    Selection.Copy Destination:=Selection.Offset(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+(1) A1～C3の9個のセルを範囲指定<br>
+(2) 選択範囲をシアンで塗りつぶし<br>
+(3) 選択範囲をコピーし、貼り付け先を指定<br>
+Destination：貼り付け先のセル範囲を表すRangeオブジェクト<br>
+(4) 貼り付け先の引数「元のセル範囲から下に3セル、右に3セル」移動した場所に指定
+</div>
+<p><br><br></p>
+<hr>
+<p><br><br><br></p>
+<h1 id="2-%E3%82%BB%E3%83%AB%E7%AF%84%E5%9B%B2%E3%81%AE%E9%81%B8%E6%8A%9E2">2. セル範囲の選択(2)</h1>
+<p>この章では引き続き、セル範囲の選択方法について学習します。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%82%BB%E3%83%AB%E9%A0%98%E5%9F%9F">● アクティブセル領域</h3>
+<p>データがセルに入力されている場合に、空白の行と列に囲まれた<br>
+セル範囲をアクティブセル領域といいます。(下図参照)</p>
+<img src="cells_area.PNG">
+<p>Excel をデータベース(住所録や台帳など)として利用する場合、<br>
+シート上で値が入力されている領域を参照できると便利です。<br>
+この章では、アクティブセル領域やデータの最終行などを<br>
+取得する方法を学びましょう。</p>
+<br>
+<h3 id="%E2%97%8F-currentregion-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● CurrentRegion プロパティ</h3>
+<p>アクティブセル領域を特定・選択できるプロパティです。対象は<br>
+Range オブジェクトで、Select メソッドと組み合わせてデータ<br>
+範囲を選択する事が出来ます。対象とする Range オブジェクトは<br>
+選択の起点となるセルで、値が入力されていればどのセルでも<br>
+利用可能です。</p>
+<p>それでは次の演習を行い、記述に慣れて行きましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+※ 2番目のワークシートを新たに作成し、マクロの実行は<br>
+他のワークシートで実行する事<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> fillArea()
+    Range(<span class="hljs-string">"B2:E5"</span>).Value = <span class="hljs-number">5</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> CellArea()
+    Range(<span class="hljs-string">"E5"</span>).CurrentRegion.<span class="hljs-keyword">Select</span>
+    Selection.Copy Destination:=Worksheets(<span class="hljs-number">2</span>).Range(<span class="hljs-string">"B2"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Rangeオブジェクトで E5セルを起点に指定<br>
+・CurrentRegion.Select でアクティブセル領域を選択<br>
+・選択したアクティブセル領域を2番目のワークシートへコピー
+</div>
+<p>CurrentRegion プロパティは起点のセルさえ指定できれば、<br>
+データがどこまで入力されているか不明でも参照が可能です。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%81%AE%E7%B5%84%E3%81%BF%E5%90%88%E3%82%8F%E3%81%9B">● メソッドとの組み合わせ</h3>
+<p>アクティブセル領域を参照できるようになったので、セットで<br>
+使いやすいメソッドについても学習しましょう。次の課題を<br>
+実行して下さい。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+fillAreaプロシージャをコピー&ペースト、それ以外のコードは<br>
+記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> fillArea()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-string">"ID"</span>
+    Range(<span class="hljs-string">"B1"</span>).Value = <span class="hljs-string">"顧客名"</span>
+    Range(<span class="hljs-string">"C1"</span>).Value = <span class="hljs-string">"担当者"</span>
+    Range(<span class="hljs-string">"A2"</span>).Value = <span class="hljs-number">1</span>
+    Range(<span class="hljs-string">"A3"</span>).Value = <span class="hljs-number">2</span>
+    Range(<span class="hljs-string">"B2"</span>).Value = <span class="hljs-string">"T社"</span>
+    Range(<span class="hljs-string">"B3"</span>).Value = <span class="hljs-string">"H社"</span>
+    Range(<span class="hljs-string">"C2"</span>).Value = <span class="hljs-string">"Nさん"</span>
+    Range(<span class="hljs-string">"C3"</span>).Value = <span class="hljs-string">"Kさん"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> CR()
+    <span class="hljs-keyword">With</span> Range(<span class="hljs-string">"A1"</span>).CurrentRegion.Borders
+        .LineStyle = xlDot
+        .Weight = xlHairline
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">With</span>
+
+    Range(<span class="hljs-string">"A5"</span>).Value = Range(<span class="hljs-string">"A1"</span>).CurrentRegion.Rows.Count - <span class="hljs-number">1</span>
+    Range(<span class="hljs-string">"A5"</span>).BorderAround LineStyle:=xlContinuous, Weight:=xlThick
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Bordersプロパティ：アクティブセル領域の罫線を作成し、<br>
+引数に線の種類を指定できます。<br>
+・Withはオブジェクトが同一の際に使用する省略ステートメント<br>
+・セルA5にアクティブセル領域の行数(見出しを除く)を出力。<br>
+(この値は繰り返し構文のカウンタ変数等に利用される)<br>
+・BorderAroundプロパティ：外枠を作成<br>
+</div>
+<br>
+<h3 id="%E2%97%8F-end-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● End プロパティ</h3>
+<p>最終行を選択/取得するためのプロパティです。引数を指定<br>
+する事で、最終行・最終列のセルを選ぶ事ができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> lastCell()
+    Range(起点セル).<span class="hljs-keyword">End</span>(xlDown).<span class="hljs-keyword">select</span>
+    Range(起点セル).<span class="hljs-keyword">End</span>(xlToRight).<span class="hljs-keyword">select</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>また上記コードは、起点にしたセルの下方向または上方向の<br>
+延長線上にデータがない場合は、エラーが発生します。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+fillAreaプロシージャをコピー&ペースト、それ以外のコードは<br>
+記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> fillArea()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">5</span>
+        Cells(i, <span class="hljs-number">1</span>).Value = i
+        Cells(i, <span class="hljs-number">2</span>).Value = i * <span class="hljs-number">2</span>
+        Cells(i, <span class="hljs-number">3</span>).Value = i * <span class="hljs-number">3</span>
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> getEnd()
+    MsgBox Cells(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>).<span class="hljs-keyword">End</span>(xlDown)
+    MsgBox Cells(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>).<span class="hljs-keyword">End</span>(xlToRight)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="3-%E5%AF%BE%E8%A9%B1%E5%9E%8B%E3%83%9E%E3%82%AF%E3%83%AD1">3. 対話型マクロ(1)</h1>
+<h3 id="%E2%97%8F-%E5%AF%BE%E8%A9%B1%E5%9E%8B%E3%83%9E%E3%82%AF%E3%83%AD%E3%81%A8%E3%81%AF">● 対話型マクロとは</h3>
+<p>通常の Excel 機能を利用していると、保存していないファイルを<br>
+削除する際などに、メッセージ(ダイアログボックス)が表示されます。<br>
+OK やキャンセルのボタンをクリックする事で次に進みますが、<br>
+この形式で構成されるプログラムを対話型マクロと言います。</p>
+<p>本章と次章では、対話型マクロを作成する際の関数やメソッドに<br>
+ついて学習して行きます。</p>
+<br>
+<h3 id="%E2%97%8F-msgbox-%E9%96%A2%E6%95%B0">● MsgBox 関数</h3>
+<p>ダイアログボックスを表示させる関数ですが、引数を詳細に<br>
+設定する事で、ユーザー側へ処理の確認や選択させる事が出来ます。</p>
+<p>基本構文は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> msg_box()
+    <span class="hljs-keyword">Dim</span> 変数 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    変数 = MsgBox(Prompt, Buttons, Title)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>MsgBox 関数に複数の引数を指定する場合は、変数に格納します。<br>
+(メッセージのみ表示の場合は、変数も()も不要です)<br>
+また、MsgBox の引数には組み込み定数が用いられるため、変数の<br>
+型は「Integer(整数型)」を指定します。</p>
+<p>引数の内容は、以下の通りです。</p>
+<blockquote>
+<p>・Prompt：ダイアログボックス内に表示させるメッセージ<br>
+・Buttons：表示するボタンの種類や個数など<br>
+・Title：ダイアログボックスのタイトルバー文字列</p>
+</blockquote>
+<p>それぞれの引数について解説して行きます。</p>
+<h4 id="%E3%83%BBprompt">・Prompt</h4>
+<p>メッセージを記述します。この引数のみ省略不可です。</p>
+<br>
+<h4 id="%E3%83%BBbuttons">・Buttons</h4>
+<p>以下の組み込み定数があります。</p>
+<blockquote>
+<p>vbOKOnly：OK のみ<br>
+vbOKCancel：OK/キャンセル<br>
+vbAbortRentryIgnore：中止/再試行/無視<br>
+vbYesNoCancel：はい/いいえ/キャンセル<br>
+vbYesNo：はい/いいえ<br>
+vbRetryCancel：再試行/キャンセル</p>
+</blockquote>
+<p>また、アイコンを組み込み定数で指定する事も可能です。</p>
+<blockquote>
+<p>vbCritical：警告アイコン<br>
+vbQuestion：？アイコン<br>
+vbExclamation：！アイコン<br>
+vbInformation：情報アイコン</p>
+</blockquote>
+<p>表示する際は、ボタンの組み込み定数と + 記号で加算します。</p>
+<br>
+<h4 id="%E3%83%BBtitle">・Title</h4>
+<p>ダイアログボックスの枠に文字列を表示します。省略が可能で、<br>
+指定が無ければ Microsoft Excel が表示されます。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> msg_sample1()
+    <span class="hljs-keyword">Dim</span> msg1 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    msg1 = MsgBox(<span class="hljs-string">"インストールは完了しました"</span>, vbOKOnly + vbInformation)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> msg_sample2()
+    <span class="hljs-keyword">Dim</span> msg2 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    msg2 = MsgBox(<span class="hljs-string">"エラーが発生しました"</span>, vbOKOnly + vbCritical, <span class="hljs-string">"警告"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> msg_sample3()
+    <span class="hljs-keyword">Dim</span> msg3 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    msg3 = MsgBox(<span class="hljs-string">"削除しますか？"</span>, vbYesNo + vbExclamation, <span class="hljs-string">"削除の確認"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> msg_sample4()
+    <span class="hljs-keyword">Dim</span> msg4 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    msg4 = MsgBox(<span class="hljs-string">"PCに危険を及ぼす可能性があります。"</span> &amp; vbCrLf &amp; <span class="hljs-string">"継続しますか？"</span>, vbAbortRetryIgnore + vbQuestion, <span class="hljs-string">"確認"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+msg_sample4の Promptに記述した「vbCrLf」は、改行を示す<br>
+組み込み定数です。前後を & で囲んで記述します。</div>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E5%AF%BE%E8%A9%B1%E5%9E%8B%E3%83%9E%E3%82%AF%E3%83%AD%E3%81%AE%E4%BD%9C%E6%88%90">● 対話型マクロの作成</h3>
+<p>MsgBox 関数の使い方を理解した上で、対話型マクロの実装を<br>
+行いましょう。今回はデータの削除を確認するダイアログボックスを<br>
+作成します。基本の流れは以下の通りです。</p>
+<blockquote>
+<p>(1) はい/いいえの MsgBox 関数を指定<br>
+(2) いいえをクリックした場合、マクロを終了する<br>
+(3) はいをクリックした場合、シートの情報を削除を実行</p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述して、削除マクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> fillCells()
+    Range(<span class="hljs-string">"A1:E5"</span>).Value = <span class="hljs-number">1</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> deleteButton()
+    <span class="hljs-keyword">Dim</span> db <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">Dim</span> dbm <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>, dbt <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+
+    dbm = <span class="hljs-string">"本当に削除しますか？"</span>
+    dbt = <span class="hljs-string">"削除の確認"</span>
+
+    db = MsgBox(dbm, vbYesNo + vbExclamation + vbDefaultButton2, dbt)
+
+    <span class="hljs-keyword">If</span> db = vbNo <span class="hljs-keyword">Then</span>
+        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span>
+    <span class="hljs-keyword">Else</span>
+        Cells.Clear
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・メッセージとタイトルを宣言した後、変数に格納<br>
+・Buttonsに「vbDefaultButton2」を追加し、デフォルトのボタンを「いいえ」に指定<br>
+・Ifステートメントを利用し、はい/いいえの処理を設定<br>
+</div>
+<br>
+<p><br><br><br></p>
+<h1 id="4-%E5%AF%BE%E8%A9%B1%E5%9E%8B%E3%83%9E%E3%82%AF%E3%83%AD2">4. 対話型マクロ(2)</h1>
+<p>この章では、引き続き対話型マクロを進めて行きます。<br>
+ここでは InputBox 関数について学習しましょう。</p>
+<br>
+<h3 id="%E2%97%8F-inputbox-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%A8%E3%81%AF">● InputBox メソッドとは</h3>
+<p>ユーザーに入力を促すボックス(フォーム)を表示させます。<br>
+入力されたデータを条件値として取得し、次の行う処理の<br>
+判断材料とする事で、目的の処理を進めて行く事が出来ます。</p>
+<br>
+<h3 id="%E2%97%8F-%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">● 基本構造</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sample()
+    InputBox(Prompt, Title, <span class="hljs-keyword">Default</span>, Type)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<blockquote>
+<p>・Prompt：メッセージの内容(省略不可)<br>
+・Title：ダイアログボックスのタイトル<br>
+・Default：ダイアログボックスの入力欄に表示する初期値<br>
+・Type：入力欄に指定するデータ型。<br></p>
+</blockquote>
+<br>
+<h4 id="%E2%97%8F-type-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">● Type について</h4>
+<p>この引数には、以下の定数が割り当てられています。</p>
+<blockquote>
+<p>0：数式<br>
+1：数値<br>
+2：文字列 (テキスト)<br>
+4：論理値 (True または False)<br>
+8：セル参照 (Range オブジェクト)<br>
+16：#N/A などのエラー値<br>
+64：数値配列<br></p>
+</blockquote>
+<p>ここでデータ型を指定すると、異なるデータ型が入力された際に<br>
+エラーを返すようになります。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sample()
+    <span class="hljs-keyword">Dim</span> varData  <span class="hljs-keyword">As</span> Variant
+    varData = Application.InputBox(<span class="hljs-string">"数値を入力してください。"</span>, Type:=<span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">If</span> TypeName(varData) = <span class="hljs-string">"Boolean"</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"入力がキャンセルされました。"</span>, vbExclamation
+    <span class="hljs-keyword">Else</span>
+        MsgBox <span class="hljs-string">"入力された数値は『"</span> &amp; varData &amp; <span class="hljs-string">"』です。"</span>, vbInformation
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・Variant：データ型の1つで、値すべてを対象とする<br>
+・TypeName：変数やオブジェクトが何の種類文字列で返す。<br>
+</div>
+<br>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のコードを記述し、マクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sample2()
+    <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">Resume</span> <span class="hljs-keyword">Next</span>
+    <span class="hljs-keyword">Dim</span> area, wRange <span class="hljs-keyword">As</span> Range
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+
+    <span class="hljs-keyword">Set</span> area = Application.InputBox(<span class="hljs-string">"セル範囲を選択してください。"</span>, Type:=<span class="hljs-number">8</span>)
+
+    <span class="hljs-keyword">If</span> Err.number &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">Then</span>
+        MsgBox <span class="hljs-string">"処理がキャンセルされました。"</span>, vbExclamation
+        <span class="hljs-keyword">End</span>
+    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span>
+
+    i = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">For</span> <span class="hljs-keyword">Each</span> wRange <span class="hljs-keyword">In</span> area
+        wRange.Value = i
+        i = i + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="5-vba-%E9%96%A2%E6%95%B01">5. VBA 関数(1)</h1>
+<p>この章ではデータの取り扱いで活躍する VBA 関数について<br>
+学習を進めて行きます。</p>
+<br>
+<h3 id="%E2%97%8F-vba-%E9%96%A2%E6%95%B0%E3%81%A8%E3%81%AF">● VBA 関数とは</h3>
+<p>通常の Excel で用意されている SUM や AVERAGE などの関数を<br>
+「ワークシート関数」と呼び、VBA で利用する関数を「VBA<br>
+関数」と呼びます。今回は VBA 関数について学習しましょう。</p>
+<br>
+<h3 id="%E2%97%8F-vba-%E9%96%A2%E6%95%B0%E3%81%AE%E7%89%B9%E5%BE%B4">● VBA 関数の特徴</h3>
+<blockquote>
+<p>(1) オブジェクトの指定が不要<br>
+(2) それぞれの関数について構文がある</p>
+</blockquote>
+<p>上記の特徴を頭に入れつつ、具体的な関数の例を記述して行きましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E5%8F%96%E5%BE%97-left-right-mid-len">● 文字列の取得 (Left, Right, Mid, Len)</h3>
+<p>対象となる文字列をデータから取り出すための関数です。<br>
+取得する値の位置などで使用する関数が異なります。</p>
+<blockquote>
+<p>Left()関数：左から〇個分の文字列を返す<br>
+Right()関数：右から〇個分の文字列を返す<br>
+Mid()関数：〇番目以降の文字列を返す<br>
+Len()関数：全ての文字列の数を返す</p>
+</blockquote>
+<p>これらの関数は、セル内のデータを確認して条件分岐させる際等に<br>
+利用されます。</p>
+<p>次の演習で、各関数の特徴を確認しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行し、それぞれの結果の違いを確認しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> a1value()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-string">"ABCDEFG"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> getText()
+    <span class="hljs-keyword">Dim</span> <span class="hljs-keyword">text</span> <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    <span class="hljs-keyword">text</span> = Range(<span class="hljs-string">"A1"</span>)
+    Range(<span class="hljs-string">"B1"</span>).Value = Left(<span class="hljs-keyword">text</span>, <span class="hljs-number">2</span>)
+    Range(<span class="hljs-string">"B2"</span>).Value = Right(<span class="hljs-keyword">text</span>, <span class="hljs-number">2</span>)
+    Range(<span class="hljs-string">"B3"</span>).Value = <span class="hljs-keyword">Mid</span>(<span class="hljs-keyword">text</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
+    Range(<span class="hljs-string">"B4"</span>).Value = Len(<span class="hljs-keyword">text</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・全ての関数で、引数として対象データを指定<br>
+・Left()関数では、左端から 2文字分のデータを取得<br>
+・Right()関数では、右端から 2文字文のデータを取得<br>
+・Mid()関数では、第2引数から第3引数までの文字を取得<br>
+・Len()関数では、対象データの文字数(7)を取得<br>
+</div>
+<br>
+<h3 id="%E2%97%8F-%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%A4%9C%E7%B4%A2-instr-instrrev">● 文字列の検索 (InStr, InStrRev)</h3>
+<p>対象データを検索するには、InStr 関数または InStrRev 関数を<br>
+利用します。InStr 関数は文字列の前方から検索し、InStrRev 関数は<br>
+後方から検索して、見つかった文字列の位置を取得します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sample()
+    InStr(対象文字列, 検索文字列)
+    InStrRev(対象文字列, 検索文字列)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>次の演習で 2 つの関数の違いを確認しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> a6value()
+    Range(<span class="hljs-string">"A6"</span>).Value = <span class="hljs-string">"123456@keiso.co.jp"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> instr()
+    <span class="hljs-keyword">Dim</span> address <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    <span class="hljs-keyword">Dim</span> i, j <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    address = Range(<span class="hljs-string">"A6"</span>)
+    i = InStr(address, <span class="hljs-string">"@"</span>)
+    j = InStrRev(address, <span class="hljs-string">"@"</span>)
+    MsgBox Left(address, i - <span class="hljs-number">1</span>)
+    MsgBox Right(address, Len(address) - j)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">補足：コードの解説</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・メールアドレスの @より前と後ろを取得する<br>
+・変数iに 前から数えた @の位置を格納<br>
+・変数jに 後ろから数えた @の位置を格納<br>
+・Mid()関数では、第2引数から第3引数までの文字を取得<br>
+・Len()関数では、対象データの文字数(7)を取得<br>
+</div>
+<br>
+<h3 id="%E2%97%8F-%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E5%A4%89%E6%8F%9Blcase-ucase">● 文字列の変換(LCase, UCase)</h3>
+<p>LCase 関数と UCase 関数を使って、文字列を変換します。これらは<br>
+アルファベットの大文字 → 小文字、小文字 → 大文字 へ変換します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sample()
+    LCase(対象文字列)
+    UCase(対象文字列)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<br>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> textFill()
+    Range(<span class="hljs-string">"A1"</span>).Value = <span class="hljs-string">"ABC"</span>
+    Range(<span class="hljs-string">"A2"</span>).Value = <span class="hljs-string">"efg"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> textChange()
+    <span class="hljs-keyword">Dim</span> text1, text2 <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    text1 = Range(<span class="hljs-string">"A1"</span>).Value
+    text2 = Range(<span class="hljs-string">"A2"</span>).Value
+    Range(<span class="hljs-string">"B1"</span>).Value = LCase(text1)
+    Range(<span class="hljs-string">"B2"</span>).Value = UCase(text2)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%8C%87%E5%AE%9A%E5%A4%89%E6%8F%9Bstrconv">● 文字列の指定変換(StrConv)</h3>
+<p>StrConv()関数を使うと、変換内容を更に細かく指定する事が可能です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> sample()
+    StrConv(対象文字列, 変換方法)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>変換方法の定数一覧</p>
+<blockquote>
+<p>・vbUpperCase：大文字へ変換<br>
+・vbLowerCase：小文字へ変換<br>
+・vbProperCase：先頭の文字を大文字に変換<br>
+・vbWide：半角 → 全角<br>
+・vbNarrow：全角 → 半角<br>
+・vbKatakana：ひらがな → カタカナ<br>
+・vbHiragana：カタカナ → ひらがな<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> textFill()
+    Range(<span class="hljs-string">"A3"</span>).Value = <span class="hljs-string">"japan"</span>
+    Range(<span class="hljs-string">"A4"</span>).Value = <span class="hljs-string">"keiso"</span>
+    Range(<span class="hljs-string">"A5"</span>).Value = <span class="hljs-string">"ＥＮＧＩＮＥＥＲＩＮＧ"</span>
+    Range(<span class="hljs-string">"A6"</span>).Value = <span class="hljs-string">"むらおまさし"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> textChange()
+    <span class="hljs-keyword">Dim</span> text3, text4, text5, text6 <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    text3 = Range(<span class="hljs-string">"A3"</span>).Value
+    text4 = Range(<span class="hljs-string">"A4"</span>).Value
+    text5 = Range(<span class="hljs-string">"A5"</span>).Value
+    text6 = Range(<span class="hljs-string">"A6"</span>).Value
+
+    Range(<span class="hljs-string">"B3"</span>).Value = StrConv(text3, vbProperCase)
+    Range(<span class="hljs-string">"B4"</span>).Value = StrConv(text4, vbUpperCase)
+    Range(<span class="hljs-string">"B5"</span>).Value = StrConv(text5, vbNarrow)
+    Range(<span class="hljs-string">"B6"</span>).Value = StrConv(text6, vbKatakana)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="6-vba-%E9%96%A2%E6%95%B02">6. VBA 関数(2)</h1>
+<p>この章では引き続き VBA 関数について学習し、合わせて<br>
+ワークシート関数の使い方も学習します。</p>
+<br>
+<h4 id="%E2%97%8F-%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E7%BD%AE%E6%8F%9Bltrim-rtrim-trim-replace">● 文字列の置換(LTrim, RTrim, Trim, Replace)</h4>
+<p>文字列からスペースを削除するには、LTrim/RTrim/Trim 関数を<br>
+用います。これらは文字列の左端/右端/両端の半角および全角の<br>
+スペースを削除します。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+※ spd の部分はコピー&ペーストして下さい</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> trm()
+    <span class="hljs-keyword">Dim</span> spd <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    spd = <span class="hljs-string">"     A   B   C      "</span>
+    MsgBox <span class="hljs-string">"「"</span> &amp; LTrim(spd) &amp; <span class="hljs-string">"」"</span>
+    MsgBox <span class="hljs-string">"「"</span> &amp; RTrim(spd) &amp; <span class="hljs-string">"」"</span>
+    MsgBox <span class="hljs-string">"「"</span> &amp; Trim(spd) &amp; <span class="hljs-string">"」"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-replace-%E9%96%A2%E6%95%B0">● Replace 関数</h3>
+<p>先程の関数では、文字列の間に入ったスペースを削除できません。<br>
+指定した文字列中のスペースを削除したり、別の文字列に置換するには、<br>
+Replace 関数を使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> repl()
+    replace(文字列, 検索文字列, 置換文字列)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>第 1 引数では対象の文字列を指定し、第 2 引数では検索する文字列、<br>
+第 3 引数では置き換える文字列を指定します。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> repl()
+    <span class="hljs-keyword">Dim</span> spd <span class="hljs-keyword">As</span> <span class="hljs-built_in">String</span>
+    spd = <span class="hljs-string">"「     A   B   C     」"</span>
+    MsgBox spd
+    MsgBox Replace(spd, <span class="hljs-string">" "</span>, <span class="hljs-string">""</span>)
+    MsgBox Replace(spd, <span class="hljs-string">"B"</span>, <span class="hljs-string">"A"</span>)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E6%97%A5%E4%BB%98%E3%82%84%E6%99%82%E5%88%BB%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B">● 日付や時刻を操作する</h3>
+<p>日付や時刻は、Date、Time、Now 関数を利用して取得が可能です。</p>
+<blockquote>
+<p>・Date 関数：現在のシステムの日付を取得<br>
+・Time 関数：現在のシステムの時刻を取得<br>
+・Now 関数：現在のシステムの日付と時刻を取得<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> dtn()
+    MsgBox <span class="hljs-built_in">Date</span>
+    MsgBox Time
+    MsgBox Now
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>さらに任意の日付を取得する事も可能です。その際は、<br>
+Year, Month, Day, Hour, Minute, Second 関数を利用します。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述してマクロを実行しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> dt()
+    <span class="hljs-comment">'Dateの代わりに Nowでも可</span>
+    MsgBox Year(<span class="hljs-built_in">Date</span>)
+    MsgBox Month(<span class="hljs-built_in">Date</span>)
+    MsgBox Day(<span class="hljs-built_in">Date</span>)
+    MsgBox Hour(Time)
+    MsgBox Minute(Time)
+    MsgBox Second(Time)
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="7-%E4%B9%9D%E4%B9%9D%E8%A1%A8%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86">7. 九九表を作ろう</h1>
+<p>この章では、これまで学習してきたメソッドやプロパティを使って<br>
+シンプルなマクロを実装し、コード作成の経験を積んで行きましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">マクロ演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下の条件を満たすコードを記述し、九九表を作成しましょう。<br>
+・A2セルから A10セルに対して 1～9の数値を格納<br>
+・B1セルから J1セルに対して 1～9の数値を格納<br>
+・各数値の行と列が交差するセルに、かけ算の結果を格納<br>
+例) B2セルはA2セル(値：1)とB1セル(値：1)が交差するので 1×1=1を格納<br>
+<br>
+※ 制限時間30分
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント1</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+■ 使用する構文・キーワード<br>
+・変数の宣言<br>
+・繰り返し処理<br>
+・算術演算子<br>
+・valueプロパティ<br>
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント2</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・変数は 2種類宣言する<br>
+・for構文は、 for 変数 = 開始 To 終了 で記述<br>
+・実行処理は 次の2系統を記述する。<br>
+(1)A2セル～A10セルと B1セル～J1セルに 1～9を格納<br>
+(2)交差するセルに対し、かけ算結果を格納<br>
+・(1)と(2)それぞれで for構文を利用する<br>
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント3</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・変数は for構文のカウンタ変数に使うため Integer(またはLong)を宣言する。<br>
+・(1)の処理では for構文の処理に対して Rangeオブジェクト.Value = 値 を設定<br>
+この時のRangeオブジェクトにはCellsを使い、変数を指定できるようにする。<br>
+・(2)の処理では 2種類の変数どうしのかけ算結果を格納する。この時、for構文の<br>
+中に for構文をネストする。<br>
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント4</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次のステートメントを参照する</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Dim</span> 変数 <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">For</span> 変数 = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+    実行処理
+<span class="hljs-keyword">Next</span>
+</div></code></pre>
+<pre class="hljs"><code><div>Cells(変数a + <span class="hljs-number">1</span>, <span class="hljs-number">1</span>).value = 変数a
+Cells(<span class="hljs-number">1</span>, 変数b + <span class="hljs-number">1</span>).value = 変数b
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">For</span> 変数a = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+    <span class="hljs-keyword">For</span> 変数b = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+        実行処理
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">Next</span>
+</div></code></pre>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">解答コード例と解説</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+九九表の実装は、以下のコードが解答例となります。<br>
+※ プロシージャ名は任意のものでよいです。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> qxq()
+    Worksheets(<span class="hljs-number">1</span>).<span class="hljs-keyword">Select</span>
+    <span class="hljs-comment">'コメント1</span>
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">Dim</span> j <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+
+    <span class="hljs-comment">'コメント2</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+        Cells(i + <span class="hljs-number">1</span>, <span class="hljs-number">1</span>).Value = i
+    <span class="hljs-keyword">Next</span>
+    <span class="hljs-keyword">For</span> j = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+        Cells(<span class="hljs-number">1</span>, j + <span class="hljs-number">1</span>).Value = j
+    <span class="hljs-keyword">Next</span>
+
+    <span class="hljs-comment">'コメント3</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+        <span class="hljs-keyword">For</span> j = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">9</span>
+            Cells(i + <span class="hljs-number">1</span>, j + <span class="hljs-number">1</span>).Value = i * j
+        <span class="hljs-keyword">Next</span>
+    <span class="hljs-keyword">Next</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p>(コメント 1)<br>
+かけ算なので、変数は 2 種類用意します。</p>
+<p>(コメント 2)<br>
+1 ～ 9 をそれぞれの行と列に格納するには、For 構文で変数を 1 ～ 9 に指定し、<br>
+変数の値を value プロパティでセルと紐づけます。A1 セルでは交差しない<br>
+ので、Cells プロパティ内の変数は + 1 されると丁度良くなります。<br>
+2 種類分記述します。</p>
+<p>(コメント 3)<br>
+今回の演習のポイントで、For 構文内に For 構文がネストしています。<br>
+実際のかけ算と同様に、i = 1、j = 1 では 1 x 1 を格納、i = 1、<br>
+j = 2 では 1 x 2 を格納 ... を j = 9 まで繰り返し、i = 2 で<br>
+再度処理を繰り返して行きます。</p>
+<br>
+<hr>
+<p><br><br><br></p>
+<h1 id="8-%E3%82%B5%E3%82%A4%E3%82%B3%E3%83%AD%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86">8. サイコロを作ろう</h1>
+<p>この章では、マクロ実装の課題演習として、サイコロを作成します。<br>
+最初は小さなマクロを作成し、少しずつ機能を追加して完成させましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">マクロ演習 1</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下の条件を満たすコードを記述し、サイコロのプログラムを作成しましょう。<br>
+・1～6の値がランダムで出力される<br>
+・値はメッセージボックスで「サイコロの目は〇です」と表示させる<br>
+※ 制限時間 10分
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント1</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+■ 使用する構文・キーワード<br>
+・Rnd()：0以上1未満の範囲で値を生成する関数。<br>
+生成したい値をかけるとその値の範囲で乱数が発生する。<br>
+・Int()：引数に指定した数値を切り捨てて整数値を返す<br>
+例) Int(3.8) → 3 <br> 
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント2</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・サイコロは1～6の値を出すので、Rnd関数に6をかけると、0～5.9...が発生<br>
+・Int関数で少数以下が切り捨てられるため、1を足す<br>
+・文字列と関数式を合わせて表示する場合は、& を使う<br>
+</div>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">解答コード例と解説</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+サイコロ機能の実装は、以下のコードが解答例となります。<br>
+※ プロシージャ名は任意のものでよいです。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> dice()
+    MsgBox <span class="hljs-string">"サイコロの目は"</span> &amp; Int(Rnd() * <span class="hljs-number">6</span> + <span class="hljs-number">1</span>) &amp; <span class="hljs-string">"です"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<p><br><br></p>
+<h3 id="%E2%97%8F-%E3%82%B5%E3%82%A4%E3%82%B3%E3%83%AD%E3%81%AE%E6%A9%9F%E8%83%BD%E8%BF%BD%E5%8A%A01">● サイコロの機能追加(1)</h3>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">マクロ演習 2</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下の条件を満たすコードを記述し、サイコロのプログラムを作成しましょう。<br>
+・演習1のマクロが登録されたボタンを、ワークシート上に作成する<br>
+・ボタンは「サイコロ」の表記に編集する<br>
+※ 制限時間 5分
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・開発タブからフォームを挿入する <br>
+・ボタンのフォームからマクロを登録する<br>
+</div>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">解答コード例と解説</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+開発タブ > 挿入 > フォームコントロールの左上のアイコン > ボタン位置決定<br>
+> ボタン貼り付け > マクロの登録ウインドウでサイコロのマクロ名選択
+</div>
+<br>
+<h3 id="%E2%97%8F-%E3%82%B5%E3%82%A4%E3%82%B3%E3%83%AD%E3%81%AE%E6%A9%9F%E8%83%BD%E8%BF%BD%E5%8A%A02">● サイコロの機能追加(2)</h3>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">マクロ演習 3</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・サイコロ 10回分の結果を A1～A10セルに出力<br>
+・A11セルに 10回分の平均値を出力<br>
+・上記のマクロを登録したボタンを作成<br>
+※ 制限時間 20分
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント 1</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・平均値はワークシート関数 AVERAGEを使用する <br>
+・10回分の結果は For構文を使用する<br>
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント 2</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・AVERAGE関数に対しては、Fomulaオブジェクトを用いる <br>
+・For構文で指定した変数は、Cellsプロパティの引数に用いる<br>
+</div>
+<p><br><br><br></p>
+<div style="height:10px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">ヒント 3</span>
+</div>
+<div style="border:2px dashed pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+・平均値は Formula = "=AVERAGE(対象範囲)" で記述する<br>
+・繰り返し部分は、<br>
+For 変数 = 1 To 10 <br>
+Cells(変数, 列).Value = サイコロの処理<br>
+Next <br>
+で記述する。
+</div>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">解答コード例と解説</span>
+</div>
+<div style="border:3px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードが解答例となります。<br>
+※ プロシージャ名は任意のものでよいです。
+</div>
+<br>
+<pre class="hljs"><code><div><span class="hljs-keyword">Sub</span> dice_ten()
+    <span class="hljs-keyword">Dim</span> i <span class="hljs-keyword">As</span> <span class="hljs-built_in">Integer</span>
+    <span class="hljs-keyword">For</span> i = <span class="hljs-number">1</span> <span class="hljs-keyword">To</span> <span class="hljs-number">10</span>
+        Cells(i, <span class="hljs-number">1</span>).Value = Int(Rnd() * <span class="hljs-number">6</span> + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">Next</span>
+    Range(<span class="hljs-string">"A11"</span>).Formula = <span class="hljs-string">"=AVERAGE(A1:A10)"</span>
+<span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span>
+</div></code></pre>
+<br>
+<hr>
+<p>今回はここまでです。お疲れ様でした！</p>
+<p><a href="https://masashi-m.github.io/text_vba_03/">VBA テキスト(3)へ</a></p>
+
+</body>
+</html>
